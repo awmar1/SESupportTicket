@@ -1,0 +1,20 @@
+# PyCharm project files
+.idea/
+
+# Python virtual environment
+.venv/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Log files
+*.log
+
+# SQLite database
+db.sqlite3
+
+# OS generated files
+.DS_Store
+Thumbs.db
