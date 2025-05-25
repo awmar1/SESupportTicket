@@ -14,6 +14,7 @@ A Django REST API for managing support tickets with agent assignment and status 
 
 - Automatic ticket assignment to agents
 - Status transition management
+- Swagger/OpenAPI documentation
 - Concurrent-safe operations
 - REST API endpoints
 
@@ -21,6 +22,7 @@ A Django REST API for managing support tickets with agent assignment and status 
 
 - Python 3.x
 - Django REST Framework
+- drf-yasg (Swagger/OpenAPI)
 - PostgreSQL
 
 ---
@@ -70,6 +72,11 @@ A Django REST API for managing support tickets with agent assignment and status 
 }
 ```
 
+## API Documentation
+
+- Swagger UI: `/swagger/`
+- ReDoc: `/redoc/`
+- OpenAPI JSON: `/swagger.json`
 
 
 ---
@@ -174,3 +181,4 @@ The README includes:
 - Status workflow diagram
 - Setup instructions
 - Authentication details
+- Documentation links
