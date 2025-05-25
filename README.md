@@ -1,6 +1,6 @@
 # SE Support Tickets
 
-A Django-based support ticket management system.
+A Django REST API for managing support tickets with agent assignment and status tracking capabilities.
 
 ---
 
@@ -9,6 +9,68 @@ A Django-based support ticket management system.
 - Python 3.8+
 - pip (Python package manager)
 - virtualenv or venv (recommended)
+
+## Features
+
+- Automatic ticket assignment to agents
+- Status transition management
+- Concurrent-safe operations
+- REST API endpoints
+
+## Tech Stack
+
+- Python 3.x
+- Django REST Framework
+- PostgreSQL
+
+---
+
+## API Endpoints
+
+### Tickets
+
+- `GET /api/tickets/ticket/` - List all tickets
+- `POST /api/tickets/ticket/` - Create a new ticket
+- `GET /api/tickets/ticket/{id}/` - Get ticket details
+- `PUT /api/tickets/ticket/{id}/` - Update ticket
+- `DELETE /api/tickets/ticket/{id}/` - Delete ticket
+
+### Assignment
+- `POST /api/tickets/ticket/assign/` - Assign batch of tickets to agent
+  ```json
+  {
+    "batch_size": 10
+  }
+  ```
+
+### Agent Actions
+- `GET /api/tickets/ticket/my_tickets/ ` - List tickets assigned to the authenticated agent
+
+- `POST /api/tickets/ticket/{id}/status/` - Update ticket status
+  ```json
+  {
+    "status": "in_progress"
+  }
+  ```
+
+### Authentication
+- `POST /api/token/` -Obtain JWT token pair
+  ```json
+  {
+    "username": "your_username",
+    "password": "your_password"
+  }
+  ```
+  
+- `POST /api/token/refresh/` - Refresh access token
+
+```json
+{
+  "refresh": "your_refresh_token"
+}
+```
+
+
 
 ---
 
@@ -61,29 +123,7 @@ export DJANGO_SETTINGS_MODULE=SESupportTickets.settings.local
 python manage.py runserver
 ```
 
-the application will be available at: 
 
-- Admin interface http://127.0.0.1:8000/admin/
-
----
-
-### Project Structure
-
-```
-SESupportTickets/
-├── logs/           # Log files
-├── media/          # User-uploaded files
-├── static/         # Static files
-├── staticfiles/    # Collected static files
-├── templates/      # HTML templates
-└── SESupportTickets/
-    ├── settings/   # Settings module
-    │   ├── base.py
-    │   ├── local.py
-    │   └── production.py
-    ├── urls.py
-    └── wsgi.py
-```
 ---
 
 ## Production Setup
@@ -110,9 +150,27 @@ python manage.py migrate
 ```
 ---
 
-This README provides essential information for:
+## Testing
 
-- Setting up the development environment
-- Running the project locally
-- Basic project structure
-- Production deployment requirements
+### Running Tests
+
+Run all tests:
+
+```bash
+python manage.py test
+```
+
+Load Test Data (Creates 1000 test tickets):
+
+```bash
+python manage.py populate_tickets 1000
+```
+
+---
+
+The README includes:
+- Overview of functionality
+- API endpoints
+- Status workflow diagram
+- Setup instructions
+- Authentication details
